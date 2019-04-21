@@ -1,0 +1,12 @@
+<form action="/hello" method="post">
+  <h1>Hi, Please enter your name into the text field.</h1>
+  <input id="input" type="text" name="name" value="<%= @name %>">
+  <button type="submit">Submit</button>
+</form>
+<% @names.each do |name| %>
+<ul>
+  <% if !name.empty? %>
+  <li><%= name %></li>
+  <% end %>
+</ul>
+<% end %>
