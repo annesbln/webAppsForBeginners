@@ -18,7 +18,7 @@ class Email
     @headers[:from]
   end
 end
-  
+
 class Mailbox
   def initialize(name, emails)
     @name = name
@@ -34,40 +34,30 @@ class Mailbox
   end
 end
 
+class MailboxErbRenderer
+  def initialize(mailbox, filename)
+    @mailbox = mailbox
+    @filename = filename
+    @emails = @mailbox.emails
+  end
+
+  def read_template
+    File.read(@filename)
+  end
+
+  def render
+    ERB.new(read_template).result(binding)
+  end
+end
+
 emails = [
   Email.new("Homework this week", date: "2014-12-01", from: "Ferdous"),
   Email.new("Keep on coding! :)", date: "2014-12-01", from: "Dajana"),
   Email.new("Re: Homework this week", date: "2014-12-02", from: "Ariane")
 ]
+
 mailbox = Mailbox.new("Ruby Study Group", emails)
-
-
-template = %(
-  <html>
-    <body>
-      <h1><%= mailbox.name %></h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>From</th>
-            <th>Subject</th>
-          </tr>
-        </thead>
-        <tbody>
-        <% emails.each do |email| %>
-          <tr>
-            <td><%= email.date %></td>
-            <td><%= email.from %></td>
-            <td><%= email.subject %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </body>
-  </html>
-)
-
-html = ERB.new(template).result(binding)
+renderer = MailboxErbRenderer.new(mailbox, "mailbox.erb")
+html = renderer.render
 
 puts html

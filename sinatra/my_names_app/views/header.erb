@@ -1,0 +1,43 @@
+<style>
+.button {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.button:hover {
+  background-color: #8B0000;
+}
+</style>
+<form action="/hello" method="post">
+  <h1>Hi, Please enter your name into the text field.</h1>
+  <input id="input" type="text" name="name" value="<%= @name %>">
+  <input type="submit" value="Submit">
+</form>
+<ul>
+<% @names.each do |name| %>
+  <% if !name.empty? %>
+  <li>
+  <a href="/hello/<%= name %>"><%= name %></a>
+  </li>
+  <% end %>
+<% end %>
+</ul>
+<% if @message %>
+  <p><%= @message %></p>
+<% end %>
+<% nameString = " names" %>
+<%if @count == 1
+  nameString = " name"
+end %>
+<p>You entered <%= @count.to_s + nameString %>.</p>
+<form action="/hello" method="post">
+  <input type="hidden" name="_method" value="delete"/>
+  <button class="button">Delete all Names</button>
+</form>
+
