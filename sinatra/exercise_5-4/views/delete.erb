@@ -1,0 +1,7 @@
+<h1>Please confirm your decision to delete this member</h1>
+<p>Do you really want to remove the member <%=@name%>?</p>
+<form action="/members/<%=@name%>" method="post">
+  <input type="submit" value="Remove Member">
+  <input type="hidden" name="_method" value="delete">
+</form>
+<a href="http://localhost:4567/members">Back</a>

@@ -18,7 +18,7 @@ class Names
     names = read_names
     index = names.index(name)
     names[index] = new_name
-    puts names
+
     File.write(@filename, names.join("\n"))
   end
 end

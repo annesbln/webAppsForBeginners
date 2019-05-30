@@ -1,0 +1,11 @@
+<h1>Please enter the name of the new member</h1>
+<form action="/members" method="post">
+  <input type="text" name="name" value="<%= @name %>">
+  <input type="submit" value="Submit">
+</form>
+<form action="/members" method="get">
+  <button type="submit">Go Back</button>
+</form>
+<% if @message %>
+  <p><%= @message %></p>
+<% end %>

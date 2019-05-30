@@ -1,0 +1,6 @@
+<h1>This is the details page for <%= @name %>.</h1>
+<a href="http://localhost:4567/members">All Members</a>
+<a href="http://localhost:4567/members/<%=@name%>/edit">Edit</a>
+<% if @message %>
+  <p><%= @message %></p>
+<% end %>

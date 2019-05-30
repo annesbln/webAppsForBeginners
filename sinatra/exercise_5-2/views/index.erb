@@ -1,0 +1,7 @@
+<h1>Members</h1>
+<ol>
+<% @names.each do |name| %>
+  <li><a href="http://localhost:4567/members/<%= name %>"><%= name %></a></li>
+  <% end %>
+</ol>
+<a href="http://localhost:4567/members/new">New Member</a>

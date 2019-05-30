@@ -1,6 +1,6 @@
 require "sinatra"
 require "erb"
-load "../names_app/Names.rb"
+load "Names.rb"
 
 names = Names.new("members.txt")
 
